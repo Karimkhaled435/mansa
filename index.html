@@ -6,7 +6,124 @@
     <title>منصة سيد خلف التعليمية</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        
+        .btn-danger {
+            background-color: #ef4444;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-danger:hover {
+            background-color: #dc2626;
+        }
+        
+        .btn-success {
+            background-color: #10b981;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            background-color: #059669;
+        }
+        
+        .nav-item {
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background-color: #e5e7eb;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .tab-content {
+            min-height: 300px;
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+    </style>
 </head>
 <body class="min-h-screen">
     <!-- Login Page -->
@@ -34,12 +151,13 @@
                     البريد الإلكتروني أو كلمة المرور غير صحيحة
                 </div>
                 <div class="text-xs text-gray-500 text-center mt-4">
-                    <p>للدخول كطالب</p>
-                    <p>للدخول كمشرف</p>
+                    <p>للدخول كطالب: student@example.com / 123456</p>
+                    <p>للدخول كمشرف: admin@example.com / admin123</p>
                 </div>
             </form>
         </div>
     </div>
+
     <!-- Main Dashboard -->
     <div id="dashboard" class="hidden">
         <!-- Header -->
@@ -58,6 +176,7 @@
                 </div>
             </div>
         </header>
+
         <!-- Navigation -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <nav class="flex space-x-4 space-x-reverse border-b">
@@ -75,6 +194,7 @@
                 </div>
             </nav>
         </div>
+
         <!-- Content Sections -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <!-- Videos Section -->
@@ -84,6 +204,7 @@
                     <!-- Videos will be loaded here via JavaScript -->
                 </div>
             </section>
+
             <!-- My Videos Section -->
             <section id="my-videos-section" class="tab-content hidden fade-in">
                 <h2 class="text-xl font-bold mb-4">فيديوهاتي المشتراة</h2>
@@ -94,6 +215,7 @@
                     لم تقم بشراء أي فيديوهات بعد. اذهب إلى قسم الفيديوهات لشراء المحتوى.
                 </div>
             </section>
+
             <!-- Assignments Section -->
             <section id="assignments-section" class="tab-content hidden fade-in">
                 <h2 class="text-xl font-bold mb-4">الواجبات</h2>
@@ -113,9 +235,11 @@
                     </div>
                 </div>
             </section>
+
             <!-- Admin Section -->
             <section id="admin-section" class="tab-content hidden fade-in">
                 <h2 class="text-xl font-bold mb-4">لوحة التحكم</h2>
+                
                 <div class="bg-white rounded-lg shadow-md p-6 mb-6">
                     <h3 class="text-lg font-semibold mb-4">إضافة فيديو جديد</h3>
                     <form id="add-video-form" class="space-y-4">
@@ -149,6 +273,7 @@
                         </button>
                     </form>
                 </div>
+                
                 <div class="bg-white rounded-lg shadow-md p-6 mb-6">
                     <h3 class="text-lg font-semibold mb-4">إضافة واجب جديد</h3>
                     <form id="add-assignment-form" class="space-y-4">
@@ -178,6 +303,7 @@
                         </button>
                     </form>
                 </div>
+                
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h3 class="text-lg font-semibold mb-4">إدارة المستخدمين</h3>
                     <div class="overflow-x-auto">
@@ -196,27 +322,9 @@
                         </table>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-md p-6 mt-6">
-                    <h3 class="text-lg font-semibold mb-4">إدارة الواجبات المرسلة</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">اسم الواجب</th>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الطالب</th>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">تاريخ التسليم</th>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الملف المرفق</th>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">إجراءات</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200" id="submitted-assignments-table-body">
-                                <!-- Submitted assignments will be loaded here via JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </section>
         </main>
+
         <!-- Shopping Cart -->
         <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden">
             <div class="absolute top-0 left-0 h-full w-full md:w-96 bg-white shadow-lg p-6 overflow-y-auto fade-in">
@@ -241,6 +349,540 @@
             </div>
         </div>
     </div>
-    <script src="scripts.js"></script>
+
+    <script>
+        // Initialize demo data
+        const initialData = {
+            users: [
+                { id: 1, email: 'student@example.com', password: '123456', type: 'student', purchasedVideos: [] },
+                { id: 2, email: 'admin@example.com', password: 'admin123', type: 'admin', purchasedVideos: [1, 2] }
+            ],
+            videos: [
+                { id: 1, title: 'مقدمة في الجبر', description: 'شرح شامل لمفاهيم الجبر الأساسية للصف الأول الثانوي', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', price: 25, category: 'math' },
+                { id: 2, title: 'الهندسة التحليلية', description: 'شرح مفصل للهندسة التحليلية وتطبيقاتها', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', price: 30, category: 'math' },
+                { id: 3, title: 'العلوم: الكيمياء العضوية', description: 'شرح مركبات الكربون والروابط الكيميائية', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', price: 40, category: 'science' },
+                { id: 4, title: 'قواعد اللغة العربية', description: 'شرح قواعد النحو والصرف في اللغة العربية', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', price: 35, category: 'arabic' },
+                { id: 5, title: 'الجزء الأول: اللغة الإنجليزية', description: 'شرح قواعد زمن المضارع البسيط والمستمر', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', price: 25, category: 'english' },
+                { id: 6, title: 'التفاضل والتكامل', description: 'مقدمة في حساب التفاضل والتكامل للصف الثالث الثانوي', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', price: 50, category: 'math' }
+            ],
+            assignments: [
+                { id: 1, title: 'واجب الجبر', description: 'حل المعادلات من الصفحة 25-30 في الكتاب المدرسي', dueDate: '2023-12-10', category: 'math' },
+                { id: 2, title: 'واجب الكيمياء', description: 'اكتب تقريراً عن التفاعلات العضوية ومشتقات الكربون', dueDate: '2023-12-15', category: 'science' },
+                { id: 3, title: 'واجب اللغة العربية', description: 'تحليل قصيدة "البردة" للإمام البوصيري', dueDate: '2023-12-20', category: 'arabic' },
+                { id: 4, title: 'واجب اللغة الإنجليزية', description: 'كتابة مقال عن أهمية التعليم في 200 كلمة', dueDate: '2023-12-25', category: 'english' }
+            ]
+        };
+
+        // Check if data exists in localStorage
+        if (!localStorage.getItem('platformData')) {
+            localStorage.setItem('platformData', JSON.stringify(initialData));
+        }
+
+        // Application state
+        let currentUser = null;
+        const cart = [];
+
+        // Elements
+        const loginPage = document.getElementById('login-page');
+        const dashboard = document.getElementById('dashboard');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+        const logoutBtn = document.getElementById('logout-btn');
+        const usernameDisplay = document.getElementById('username-display');
+        const adminNavItem = document.getElementById('admin-nav-item');
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.tab-content');
+        const videosContainer = document.getElementById('videos-container');
+        const myVideosContainer = document.getElementById('my-videos-container');
+        const noVideosMessage = document.getElementById('no-videos-message');
+        const assignmentsContainer = document.getElementById('assignments-container');
+        const assignmentFilter = document.getElementById('assignment-filter');
+        const cartIcon = document.getElementById('cart-icon');
+        const cartCount = document.getElementById('cart-count');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const closeCart = document.getElementById('close-cart');
+        const cartItems = document.getElementById('cart-items');
+        const cartEmptyMessage = document.getElementById('cart-empty-message');
+        const totalPrice = document.getElementById('total-price');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const addVideoForm = document.getElementById('add-video-form');
+        const addAssignmentForm = document.getElementById('add-assignment-form');
+        const usersTableBody = document.getElementById('users-table-body');
+
+        // Helper function to get data from localStorage
+        function getData() {
+            return JSON.parse(localStorage.getItem('platformData'));
+        }
+
+        // Helper function to save data to localStorage
+        function saveData(data) {
+            localStorage.setItem('platformData', JSON.stringify(data));
+        }
+
+        // Authentication
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            const data = getData();
+            const user = data.users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                usernameDisplay.textContent = user.email.split('@')[0];
+                
+                if (user.type === 'admin') {
+                    adminNavItem.classList.remove('hidden');
+                }
+                
+                loginPage.classList.add('hidden');
+                dashboard.classList.remove('hidden');
+                
+                renderVideos();
+                renderMyVideos();
+                renderAssignments();
+                if (user.type === 'admin') {
+                    renderUsers();
+                }
+            } else {
+                loginError.classList.remove('hidden');
+                setTimeout(() => {
+                    loginError.classList.add('hidden');
+                }, 3000);
+            }
+        });
+
+        logoutBtn.addEventListener('click', function() {
+            currentUser = null;
+            cart.length = 0;
+            updateCartCount();
+            
+            dashboard.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+            
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            adminNavItem.classList.add('hidden');
+        });
+
+        // Navigation
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const target = this.getAttribute('data-target');
+                
+                navItems.forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                sections.forEach(section => {
+                    section.classList.add('hidden');
+                    section.classList.remove('fade-in');
+                });
+                
+                document.getElementById(target).classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById(target).classList.add('fade-in');
+                }, 10);
+            });
+        });
+
+        // Render videos
+        function renderVideos() {
+            const data = getData();
+            videosContainer.innerHTML = '';
+            
+            data.videos.forEach(video => {
+                const isInCart = cart.some(item => item.id === video.id);
+                const isPurchased = currentUser.purchasedVideos.includes(video.id);
+                
+                let categoryName;
+                switch(video.category) {
+                    case 'math': categoryName = 'الرياضيات'; break;
+                    case 'science': categoryName = 'العلوم'; break;
+                    case 'arabic': categoryName = 'اللغة العربية'; break;
+                    case 'english': categoryName = 'اللغة الإنجليزية'; break;
+                    default: categoryName = 'عام';
+                }
+                
+                const videoCard = document.createElement('div');
+                videoCard.className = 'card bg-white rounded-lg shadow-md overflow-hidden';
+                videoCard.innerHTML = `
+                    <div class="relative aspect-w-16 aspect-h-9">
+                        <video class="w-full h-48 object-cover" poster="https://via.placeholder.com/640x360.png?text=فيديو+تعليمي" src="${video.url}" preload="metadata"></video>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-semibold mb-2">${video.title}</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">${categoryName}</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">${video.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold">${video.price} جنيه</span>
+                            ${isPurchased ? 
+                                `<button class="btn-success cursor-not-allowed" disabled>تم الشراء</button>` :
+                                isInCart ? 
+                                `<button class="btn-danger remove-from-cart" data-id="${video.id}">إزالة من السلة</button>` :
+                                `<button class="btn-primary add-to-cart" data-id="${video.id}">إضافة للسلة</button>`
+                            }
+                        </div>
+                    </div>
+                `;
+                
+                videosContainer.appendChild(videoCard);
+            });
+            
+            // Add event listeners to the add-to-cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const videoId = parseInt(this.getAttribute('data-id'));
+                    const data = getData();
+                    const video = data.videos.find(v => v.id === videoId);
+                    
+                    if (video && !cart.some(item => item.id === videoId)) {
+                        cart.push(video);
+                        updateCartCount();
+                        renderVideos();
+                    }
+                });
+            });
+            
+            // Add event listeners to the remove-from-cart buttons
+            document.querySelectorAll('.remove-from-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const videoId = parseInt(this.getAttribute('data-id'));
+                    const index = cart.findIndex(item => item.id === videoId);
+                    
+                    if (index !== -1) {
+                        cart.splice(index, 1);
+                        updateCartCount();
+                        renderVideos();
+                        renderCart();
+                    }
+                });
+            });
+        }
+
+        // Render my videos
+        function renderMyVideos() {
+            const data = getData();
+            myVideosContainer.innerHTML = '';
+            
+            const purchasedVideos = data.videos.filter(video => currentUser.purchasedVideos.includes(video.id));
+            
+            if (purchasedVideos.length === 0) {
+                noVideosMessage.classList.remove('hidden');
+                return;
+            }
+            
+            noVideosMessage.classList.add('hidden');
+            
+            purchasedVideos.forEach(video => {
+                let categoryName;
+                switch(video.category) {
+                    case 'math': categoryName = 'الرياضيات'; break;
+                    case 'science': categoryName = 'العلوم'; break;
+                    case 'arabic': categoryName = 'اللغة العربية'; break;
+                    case 'english': categoryName = 'اللغة الإنجليزية'; break;
+                    default: categoryName = 'عام';
+                }
+                
+                const videoCard = document.createElement('div');
+                videoCard.className = 'card bg-white rounded-lg shadow-md overflow-hidden';
+                videoCard.innerHTML = `
+                    <div class="relative aspect-w-16 aspect-h-9">
+                        <video class="w-full h-48 object-cover" controls src="${video.url}"></video>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-semibold mb-2">${video.title}</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">${categoryName}</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">${video.description}</p>
+                    </div>
+                `;
+                
+                myVideosContainer.appendChild(videoCard);
+            });
+        }
+
+        // Render assignments
+        function renderAssignments(category = 'all') {
+            const data = getData();
+            assignmentsContainer.innerHTML = '';
+            
+            let filteredAssignments = data.assignments;
+            if (category !== 'all') {
+                filteredAssignments = data.assignments.filter(assignment => assignment.category === category);
+            }
+            
+            if (filteredAssignments.length === 0) {
+                assignmentsContainer.innerHTML = '<p class="text-center py-8 text-gray-500">لا توجد واجبات متاحة</p>';
+                return;
+            }
+            
+            filteredAssignments.forEach(assignment => {
+                let categoryName;
+                switch(assignment.category) {
+                    case 'math': categoryName = 'الرياضيات'; break;
+                    case 'science': categoryName = 'العلوم'; break;
+                    case 'arabic': categoryName = 'اللغة العربية'; break;
+                    case 'english': categoryName = 'اللغة الإنجليزية'; break;
+                    default: categoryName = 'عام';
+                }
+                
+                const dueDate = new Date(assignment.dueDate);
+                const formattedDate = dueDate.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+                
+                const assignmentCard = document.createElement('div');
+                assignmentCard.className = 'card bg-gray-50 rounded-lg p-4 mb-4 border border-gray-200';
+                assignmentCard.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">${assignment.title}</h3>
+                            <p class="text-gray-600 mb-3">${assignment.description}</p>
+                            <p class="text-sm text-gray-500">موعد التسليم: ${formattedDate}</p>
+                        </div>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">${categoryName}</span>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">تسليم الواجب</label>
+                        <div class="flex">
+                            <input type="file" class="block w-full text-sm text-gray-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-md file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-blue-50 file:text-blue-700
+                                hover:file:bg-blue-100">
+                            <button class="btn-primary mr-2">تسليم</button>
+                        </div>
+                    </div>
+                `;
+                
+                assignmentsContainer.appendChild(assignmentCard);
+            });
+        }
+
+        // Filter assignments
+        assignmentFilter.addEventListener('change', function() {
+            renderAssignments(this.value);
+        });
+
+        // Cart functionality
+        function updateCartCount() {
+            if (cart.length > 0) {
+                cartCount.textContent = cart.length;
+                cartCount.classList.remove('hidden');
+                checkoutBtn.disabled = false;
+            } else {
+                cartCount.classList.add('hidden');
+                checkoutBtn.disabled = true;
+            }
+        }
+
+        function renderCart() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartEmptyMessage.classList.remove('hidden');
+                totalPrice.textContent = '0';
+                return;
+            }
+            
+            cartEmptyMessage.classList.add('hidden');
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                total += item.price;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'flex justify-between items-center p-3 bg-gray-50 rounded-lg';
+                cartItem.innerHTML = `
+                    <div>
+                        <h4 class="font-medium">${item.title}</h4>
+                        <p class="text-sm text-gray-600">${item.price} جنيه</p>
+                    </div>
+                    <button class="text-red-500 cart-remove" data-id="${item.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            totalPrice.textContent = total;
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.cart-remove').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    const index = cart.findIndex(item => item.id === itemId);
+                    
+                    if (index !== -1) {
+                        cart.splice(index, 1);
+                        updateCartCount();
+                        renderCart();
+                        renderVideos();
+                    }
+                });
+            });
+        }
+
+        cartIcon.addEventListener('click', function() {
+            cartOverlay.classList.remove('hidden');
+            renderCart();
+        });
+
+        closeCart.addEventListener('click', function() {
+            cartOverlay.classList.add('hidden');
+        });
+
+        checkoutBtn.addEventListener('click', function() {
+            if (cart.length === 0) return;
+            
+            const data = getData();
+            const userIndex = data.users.findIndex(u => u.id === currentUser.id);
+            
+            if (userIndex !== -1) {
+                cart.forEach(item => {
+                    if (!data.users[userIndex].purchasedVideos.includes(item.id)) {
+                        data.users[userIndex].purchasedVideos.push(item.id);
+                    }
+                });
+                
+                saveData(data);
+                currentUser = data.users[userIndex];
+                
+                cart.length = 0;
+                updateCartCount();
+                renderCart();
+                renderVideos();
+                renderMyVideos();
+                
+                alert('تم إتمام عملية الشراء بنجاح!');
+                cartOverlay.classList.add('hidden');
+            }
+        });
+
+        // Admin functionality
+        function renderUsers() {
+            const data = getData();
+            usersTableBody.innerHTML = '';
+            
+            data.users.forEach(user => {
+                const userRow = document.createElement('tr');
+                userRow.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">${user.email}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.type === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-green-100 text-green-800'}">
+                            ${user.type === 'admin' ? 'مشرف' : 'طالب'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        ${user.purchasedVideos.length}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                        <button class="text-indigo-600 hover:text-indigo-900 user-details" data-id="${user.id}">
+                            <i class="fas fa-eye ml-1"></i> عرض التفاصيل
+                        </button>
+                        ${user.type !== 'admin' ? `
+                        <button class="text-red-600 hover:text-red-900 mr-3 delete-user" data-id="${user.id}">
+                            <i class="fas fa-trash ml-1"></i> حذف
+                        </button>
+                        ` : ''}
+                    </td>
+                `;
+                
+                usersTableBody.appendChild(userRow);
+            });
+            
+            // Add event listeners to user details buttons
+            document.querySelectorAll('.user-details').forEach(button => {
+                button.addEventListener('click', function() {
+                    const userId = parseInt(this.getAttribute('data-id'));
+                    const data = getData();
+                    const user = data.users.find(u => u.id === userId);
+                    
+                    if (user) {
+                        alert(`
+                            البريد الإلكتروني: ${user.email}
+                            نوع الحساب: ${user.type === 'admin' ? 'مشرف' : 'طالب'}
+                            عدد الفيديوهات المشتراة: ${user.purchasedVideos.length}
+                        `);
+                    }
+                });
+            });
+            
+            // Add event listeners to delete user buttons
+            document.querySelectorAll('.delete-user').forEach(button => {
+                button.addEventListener('click', function() {
+                    const userId = parseInt(this.getAttribute('data-id'));
+                    const data = getData();
+                    const userIndex = data.users.findIndex(u => u.id === userId);
+                    
+                    if (userIndex !== -1 && data.users[userIndex].type !== 'admin') {
+                        if (confirm('هل أنت متأكد من حذف هذا المستخدم؟')) {
+                            data.users.splice(userIndex, 1);
+                            saveData(data);
+                            renderUsers();
+                        }
+                    }
+                });
+            });
+        }
+
+        // Add new video
+        addVideoForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const data = getData();
+            const newVideoId = data.videos.length > 0 ? Math.max(...data.videos.map(v => v.id)) + 1 : 1;
+            
+            const newVideo = {
+                id: newVideoId,
+                title: document.getElementById('video-title').value,
+                description: document.getElementById('video-description').value,
+                url: document.getElementById('video-url').value,
+                price: parseInt(document.getElementById('video-price').value),
+                category: document.getElementById('video-category').value
+            };
+            
+            data.videos.push(newVideo);
+            saveData(data);
+            
+            renderVideos();
+            this.reset();
+            
+            alert('تم إضافة الفيديو بنجاح!');
+        });
+
+        // Add new assignment
+        addAssignmentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const data = getData();
+            const newAssignmentId = data.assignments.length > 0 ? Math.max(...data.assignments.map(a => a.id)) + 1 : 1;
+            
+            const newAssignment = {
+                id: newAssignmentId,
+                title: document.getElementById('assignment-title').value,
+                description: document.getElementById('assignment-description').value,
+                dueDate: document.getElementById('assignment-due-date').value,
+                category: document.getElementById('assignment-category').value
+            };
+            
+            data.assignments.push(newAssignment);
+            saveData(data);
+            
+            renderAssignments(assignmentFilter.value);
+            this.reset();
+            
+            alert('تم إضافة الواجب بنجاح!');
+        });
+    </script>
 </body>
 </html>
